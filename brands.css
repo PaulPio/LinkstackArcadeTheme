@@ -1,0 +1,159 @@
+
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+
+- Avatar
+- Social icons
+- Buttons
+- Brand Icons
+- Turbo mode (Konami code)
+
+*/
+
+
+/* Avatar
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Square "player sprite" frame instead of a rounded avatar */
+.rounded-avatar,
+#avatar {
+  border-radius: 0;
+  border: 3px solid #000;
+  background-color: var(--arcade-panel2);
+  box-shadow: 0 0 0 3px var(--arcade-yellow), 9px 9px 0 3px #000; }
+
+
+/* Social icon
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.social-icon {
+  font-size: 28px;
+  padding: 10px;
+  color: var(--arcade-cyan); }
+.social-hover:hover .social-icon,
+.social-hover:focus-visible .social-icon {
+  color: var(--arcade-yellow); }
+.social-icon-div {
+  padding-bottom: 26px; }
+
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Every link gets the same arcade button; brand colors are not used. */
+.button,
+button {
+  --accent: var(--arcade-yellow);
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 320px;
+  max-width: calc(100% - 14px);
+  height: auto;
+  padding: 16px 14px 14px;
+  font-family: var(--arcade-pixel);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: normal;
+  color: var(--accent);
+  background: var(--arcade-panel);
+  border: 3px solid #000;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 #000;
+  outline: none;
+  cursor: pointer;
+  transition: transform .08s steps(1), box-shadow .08s steps(1); }
+
+/* Rotate the four neon accents down the list */
+.button-entrance:nth-of-type(4n+1) .button { --accent: var(--arcade-yellow); }
+.button-entrance:nth-of-type(4n+2) .button { --accent: var(--arcade-cyan); }
+.button-entrance:nth-of-type(4n+3) .button { --accent: var(--arcade-pink); }
+.button-entrance:nth-of-type(4n+4) .button { --accent: var(--arcade-green); }
+/* The social icon row is also a div, so shift by one when it is there */
+.social-icon-div ~ .button-entrance:nth-of-type(4n+2) .button { --accent: var(--arcade-yellow); }
+.social-icon-div ~ .button-entrance:nth-of-type(4n+3) .button { --accent: var(--arcade-cyan); }
+.social-icon-div ~ .button-entrance:nth-of-type(4n+4) .button { --accent: var(--arcade-pink); }
+.social-icon-div ~ .button-entrance:nth-of-type(4n+1) .button { --accent: var(--arcade-green); }
+
+/* Hover: fill with the accent and press down, like the buttons on paulpio.com */
+.button:hover,
+.button:focus-visible,
+button:hover {
+  color: var(--arcade-bg);
+  background: var(--accent);
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 #000; }
+.button:active,
+button:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 #000; }
+.button:focus-visible {
+  outline: 3px dashed #fff;
+  outline-offset: 6px; }
+
+/* Blinking menu cursor next to the selected button */
+.button::before {
+  content: "\25B6";
+  position: absolute;
+  top: 50%;
+  left: -34px;
+  margin-top: -9px;
+  font-family: var(--arcade-text);
+  font-size: 22px;
+  line-height: 18px;
+  color: var(--arcade-yellow);
+  text-shadow: 2px 2px 0 #000;
+  visibility: hidden; }
+.button:hover::before,
+.button:focus-visible::before {
+  visibility: visible;
+  animation: arcade-blink .6s steps(1) infinite; }
+
+.button.button-primary {
+  color: var(--arcade-bg);
+  background: var(--arcade-yellow); }
+
+
+/* Brand Icons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Icons turn into flat white sprites, then dark on the filled hover state */
+.icon {
+  position: relative;
+  top: -2px;
+  padding: 0 10px 0 0;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1); }
+.button:hover .icon,
+.button:focus-visible .icon {
+  filter: brightness(0); }
+/* Font Awesome icons on custom links follow the text color */
+.button i.icon {
+  top: 0;
+  width: auto;
+  height: auto;
+  font-size: 18px;
+  filter: none;
+  color: inherit !important; }
+
+
+/* Turbo mode (Konami code, see extra/custom-body-end.blade.php)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.arcade-turbo .button {
+  animation: arcade-rainbow 1.2s steps(1) infinite;
+  animation-delay: calc(var(--delay, 1s) * -0.3); }
+.arcade-turbo h1 {
+  animation: arcade-rainbow-shadow 1.2s steps(1) infinite; }
+.arcade-turbo .parallax-background .object1,
+.arcade-turbo .parallax-background .object2,
+.arcade-turbo .parallax-background .object3 {
+  animation-duration: 4s, .4s; }

@@ -1,0 +1,438 @@
+/* ************************************************************* */
+/*
+/* Arcade — a retro arcade theme for LinkStack
+/* Colors and fonts match paulpio.com
+/*
+/* ************************************************************* */
+
+
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+
+- Fonts
+- Palette
+- Grid
+- Base Styles
+- Typography
+- Links
+- Spacing
+- Misc
+- Pixel starfield
+- CRT overlay
+- HUD, toast and points
+- Credit footer
+
+*/
+
+
+/* Fonts (SIL Open Font License, see extra/custom-assets/fonts/OFL.txt)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('extra/custom-assets/fonts/press-start-2p-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('extra/custom-assets/fonts/vt323-latin-400-normal.woff2') format('woff2');
+}
+
+
+/* Palette
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root {
+  --arcade-bg: #0a0a14;
+  --arcade-panel: #12121e;
+  --arcade-panel2: #1a1a26;
+  --arcade-yellow: #ffe600;
+  --arcade-cyan: #00e5ff;
+  --arcade-pink: #ff2e88;
+  --arcade-green: #39ff88;
+  --arcade-muted: #9a9ab8;
+  --arcade-soft: #c4c4dd;
+  --arcade-dim: #4a4a63;
+  --arcade-pixel: 'Press Start 2P', monospace;
+  --arcade-text: 'VT323', monospace;
+}
+
+
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box; }
+.column {
+  position: center;
+  width: 100%;
+  float: center;
+  box-sizing: border-box; }
+
+/* For devices larger than 400px */
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+
+/* For devices larger than 550px */
+@media (min-width: 550px) {
+  .container {
+    width: 80%; }
+  .column,
+  .columns {
+    margin-left: 0; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
+}
+
+
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Arcade is dark only, so there is no prefers-color-scheme switch */
+html {
+  font-size: 100%; }
+
+body {
+  min-height: 100vh;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 400;
+  font-family: var(--arcade-text);
+  background: var(--arcade-bg);
+  color: var(--arcade-soft);
+  overflow-x: hidden; }
+
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+h1 {
+  margin: 28px 0 22px;
+  font-family: var(--arcade-pixel);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: 0;
+  color: #fff;
+  text-shadow: 3px 3px 0 var(--arcade-pink); }
+
+/* "> INSERT COIN TO CONTINUE" prompt above the name */
+h1::before {
+  content: "> INSERT COIN TO CONTINUE";
+  display: block;
+  margin-bottom: 12px;
+  font-family: var(--arcade-text);
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--arcade-cyan);
+  text-shadow: none; }
+
+/* Blinking cursor after the name */
+h1::after {
+  content: "_";
+  margin-left: 6px;
+  color: var(--arcade-yellow);
+  text-shadow: none;
+  animation: arcade-blink 1s steps(1) infinite; }
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  h1 { font-size: 28px; text-shadow: 4px 4px 0 var(--arcade-pink); }
+}
+
+p {
+  margin-top: 0; }
+
+/* Bio as a game dialog box */
+.description-parent p {
+  display: inline-block;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 14px 18px 12px;
+  text-align: left;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--arcade-soft);
+  background: var(--arcade-panel);
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000; }
+.description-parent > p::before {
+  content: "\25B8\00a0";
+  color: var(--arcade-yellow); }
+.description-parent p:empty {
+  display: none; }
+
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+a {
+  color: var(--arcade-cyan);
+  text-decoration: none; }
+a:hover {
+  color: var(--arcade-yellow); }
+
+.spacing {
+  padding: 0 10px; }
+
+
+/* Spacing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+button,
+.button {
+  margin-bottom: 18px; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+p,
+ol {
+  margin-bottom: 2.5rem; }
+
+
+/* Misc
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 3px solid #000; }
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--arcade-yellow) var(--arcade-panel); }
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px; }
+*::-webkit-scrollbar-track {
+  background: var(--arcade-panel); }
+*::-webkit-scrollbar-thumb {
+  background-color: var(--arcade-yellow);
+  border: 2px solid #000;
+  border-radius: 0; }
+
+/* Footer links and the closing line */
+.footer a {
+  font-family: var(--arcade-text);
+  font-size: 22px;
+  color: var(--arcade-muted); }
+.footer a:hover,
+.footer a:focus-visible {
+  color: var(--arcade-cyan); }
+.footer::after {
+  content: "INSERT COIN TO REPLAY";
+  display: block;
+  margin-top: 18px;
+  font-family: var(--arcade-text);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--arcade-dim); }
+
+
+/* Pixel starfield
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Uses the parallax layer LinkStack adds to every theme. */
+/* Three layers of square stars scroll down at different speeds and blink. */
+.background-container,
+.parallax-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none; }
+
+.parallax-background > div {
+  display: none; }
+
+.parallax-background .object1,
+.parallax-background .object2,
+.parallax-background .object3 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent; }
+
+.parallax-background .object1::after,
+.parallax-background .object2::after,
+.parallax-background .object3::after {
+  content: "";
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  box-shadow: inherit; }
+
+.parallax-background .object1 {
+  width: 2px;
+  height: 2px;
+  animation: arcade-starfall 90s linear infinite, arcade-twinkle 2.2s steps(1) infinite;
+  box-shadow:
+    97.5vw 74.1vh #ffffff, 16.9vw 66.3vh #ffe600, 59.4vw 53.3vh #c4c4dd, 73.4vw 46.7vh #c4c4dd,
+    38.5vw 59.7vh #c4c4dd, 29.3vw 79.7vh #c4c4dd, 43.2vw 79.7vh #c4c4dd, 28.8vw 38.9vh #00e5ff,
+    27.2vw 0.7vh #ff2e88, 16.2vw 74.8vh #9a9ab8, 70.4vw 87.7vh #ff2e88, 91.4vw 96.3vh #c4c4dd,
+    74.3vw 40.5vh #9a9ab8, 85.9vw 1.3vh #39ff88, 52.3vw 39.3vh #ffffff, 75.8vw 93.4vh #ffffff,
+    75.2vw 74.2vh #ff2e88, 54.9vw 33.3vh #ffe600, 78.4vw 67.4vh #c4c4dd, 96.6vw 9.3vh #39ff88,
+    15.0vw 94.9vh #c4c4dd, 2.1vw 3.0vh #39ff88, 19.0vw 65.8vh #ffffff, 95.6vw 20.7vh #c4c4dd,
+    65.3vw 5.5vh #9a9ab8, 78.8vw 7.0vh #ffe600, 25.1vw 19.4vh #9a9ab8, 60.5vw 9.0vh #9a9ab8,
+    92.0vw 9.0vh #9a9ab8, 99.4vw 40.6vh #39ff88, 16.5vw 89.4vh #ff2e88, 85.0vw 84.5vh #00e5ff,
+    1.6vw 65.7vh #00e5ff, 60.8vw 75.6vh #c4c4dd, 90.0vw 69.2vh #ff2e88, 18.0vw 66.0vh #ffffff,
+    2.9vw 53.3vh #ffe600, 45.7vw 12.8vh #39ff88, 62.8vw 49.5vh #9a9ab8, 59.8vw 87.1vh #ff2e88,
+    37.3vw 1.8vh #ff2e88, 95.6vw 71.0vh #00e5ff, 61.2vw 93.6vh #ffe600, 57.5vw 18.4vh #9a9ab8,
+    92.5vw 49.5vh #ff2e88, 24.5vw 10.0vh #ffffff, 15.5vw 67.8vh #ffffff, 97.2vw 96.3vh #ff2e88,
+    14.8vw 60.2vh #ffffff, 95.7vw 70.4vh #ff2e88, 63.4vw 81.4vh #00e5ff, 91.4vw 42.8vh #ffe600,
+    82.2vw 98.6vh #ffe600, 37.0vw 23.3vh #39ff88, 92.3vw 55.8vh #c4c4dd, 15.6vw 26.8vh #c4c4dd,
+    17.3vw 1.3vh #c4c4dd, 10.5vw 6.7vh #00e5ff, 0.3vw 43.5vh #c4c4dd, 2.8vw 68.2vh #00e5ff; }
+
+.parallax-background .object2 {
+  width: 3px;
+  height: 3px;
+  animation: arcade-starfall 55s linear infinite, arcade-twinkle 3.1s steps(1) infinite .6s;
+  box-shadow:
+    74.9vw 29.6vh #ffe600, 20.7vw 23.0vh #00e5ff, 91.5vw 81.5vh #ffe600, 63.2vw 51.9vh #c4c4dd,
+    87.7vw 70.3vh #c4c4dd, 49.0vw 70.9vh #ffffff, 21.6vw 6.5vh #c4c4dd, 83.4vw 55.2vh #9a9ab8,
+    92.3vw 19.8vh #c4c4dd, 29.2vw 25.4vh #ffffff, 60.9vw 47.1vh #9a9ab8, 15.1vw 57.6vh #9a9ab8,
+    67.5vw 88.4vh #9a9ab8, 72.1vw 89.9vh #39ff88, 63.5vw 66.8vh #c4c4dd, 70.2vw 17.7vh #ffe600,
+    53.0vw 82.6vh #ffe600, 58.0vw 37.7vh #ffffff, 10.3vw 17.8vh #ffe600, 57.3vw 30.7vh #39ff88,
+    79.9vw 70.4vh #ffe600, 67.0vw 44.9vh #ff2e88, 22.8vw 92.5vh #ff2e88, 47.1vw 51.1vh #9a9ab8,
+    38.1vw 78.5vh #c4c4dd, 28.5vw 79.7vh #ff2e88, 6.5vw 98.6vh #9a9ab8, 94.0vw 29.9vh #c4c4dd,
+    57.4vw 32.1vh #ff2e88, 61.9vw 7.9vh #c4c4dd; }
+
+.parallax-background .object3 {
+  width: 4px;
+  height: 4px;
+  animation: arcade-starfall 30s linear infinite, arcade-twinkle 4.3s steps(1) infinite 1.2s;
+  box-shadow:
+    66.2vw 15.5vh #ffe600, 85.6vw 35.4vh #c4c4dd, 12.4vw 84.3vh #c4c4dd, 44.6vw 48.3vh #00e5ff,
+    96.0vw 37.6vh #ffffff, 53.5vw 75.3vh #ffe600, 39.4vw 18.6vh #ff2e88, 74.6vw 66.7vh #ff2e88,
+    5.9vw 80.9vh #ffe600, 77.4vw 80.9vh #ffffff, 75.1vw 30.1vh #9a9ab8, 30.0vw 93.0vh #39ff88,
+    42.6vw 16.0vh #ff2e88, 9.3vw 4.2vh #ff2e88; }
+
+
+/* CRT overlay
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Neon stripe along the top, like the progress bar on paulpio.com */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 10001;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--arcade-yellow), var(--arcade-pink), var(--arcade-cyan)); }
+
+/* Scanlines and a soft vignette. Disable with 'disable_scanlines' in config.php */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0, 0, 0, .25) 3px, transparent 4px),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .5) 100%); }
+
+
+/* HUD, toast and points (markup from extra/custom-body.blade.php)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.arcade-hud {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 18px;
+  padding: 14px 20px 10px;
+  font-family: var(--arcade-pixel);
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: left;
+  color: var(--arcade-muted);
+  background: var(--arcade-panel);
+  border-bottom: 3px solid #000; }
+.arcade-hud b {
+  font-weight: 400;
+  margin-left: 8px; }
+.arcade-hud .hud-1up {
+  color: var(--arcade-pink);
+  animation: arcade-blink 1s steps(1) infinite; }
+.arcade-hud .hud-score b { color: var(--arcade-yellow); }
+.arcade-hud .hud-hi b { color: var(--arcade-cyan); }
+.arcade-hud .hud-credit { color: var(--arcade-green); }
+
+@media (max-width: 480px) {
+  .arcade-hud .hud-credit { display: none; }
+}
+
+.arcade-toast {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  z-index: 10002;
+  min-width: 240px;
+  padding: 18px 22px 16px;
+  font-family: var(--arcade-pixel);
+  font-size: 12px;
+  line-height: 1.9;
+  text-align: center;
+  white-space: pre-line;
+  color: var(--arcade-yellow);
+  background: var(--arcade-panel);
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  opacity: 0; }
+.arcade-toast.is-visible {
+  visibility: visible;
+  opacity: 1;
+  animation: arcade-toast-in .3s steps(3) both; }
+
+.arcade-points {
+  position: fixed;
+  z-index: 10002;
+  pointer-events: none;
+  font-family: var(--arcade-pixel);
+  font-size: 12px;
+  color: var(--arcade-yellow);
+  text-shadow: 2px 2px 0 #000;
+  animation: arcade-points .8s steps(8) forwards; }
+
+
+/* Credit footer
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.credit-txt {
+  font-family: var(--arcade-text);
+  font-weight: 400;
+  font-size: 18px;
+  text-decoration: none; }
+
+.credit-txt-clr {
+  color: var(--arcade-muted) !important; }

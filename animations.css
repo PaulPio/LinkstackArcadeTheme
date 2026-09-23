@@ -1,0 +1,173 @@
+/* ************************************************************* */
+/*
+/* Arcade animations. Everything moves in steps(), like 8-bit sprites.
+/*
+/* ************************************************************* */
+
+
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Entrance animations
+- Button hover animations
+- Icon hover animations
+- Footer hover animations
+- Arcade effects
+- Reduced motion
+
+*/
+
+
+
+/* Entrance animations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Buttons "spawn" one after another */
+.button-entrance {
+  animation-name: arcade-spawn;
+  animation-duration: .6s;
+  animation-timing-function: steps(4);
+  animation-fill-mode: both;
+  /* Used to start button entrance animation one after another  */
+  animation-delay: calc(var(--delay)/10); }
+
+@keyframes arcade-spawn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.6); }
+  to {
+    opacity: 1;
+    transform: none; }
+}
+
+.fadein {
+  animation-name: arcade-fadein;
+  animation-duration: 1s;
+  animation-timing-function: steps(5);
+  animation-fill-mode: both; }
+
+@keyframes arcade-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* Button hover animations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* The press-down effect lives in brands.css, so no scaling here */
+
+.button-hover,
+.credit-hover,
+.social-hover {
+  display: inline-block;
+  transition-property: transform;
+  transition-duration: .1s;
+  transition-timing-function: steps(1); }
+
+.credit-hover:hover,
+.credit-hover:focus,
+.social-hover:hover,
+.social-hover:focus-visible {
+  transform: translateY(-4px); }
+
+
+/* Icon hover animations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.icon-hover .hvr-icon {
+  transform: translateZ(0); }
+.icon-hover:hover .hvr-icon,
+.icon-hover:focus-visible .hvr-icon {
+  animation: arcade-hop .5s steps(1) 1; }
+
+@keyframes arcade-hop {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-4px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+
+/* Footer hover animations
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.footer-hover {
+  display: inline-block;
+  transition-property: transform;
+  transition-duration: .1s;
+  transition-timing-function: steps(1); }
+.footer-hover:hover,
+.footer-hover:focus-visible {
+  transform: translateY(-4px); }
+
+
+/* Arcade effects
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@keyframes arcade-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes arcade-twinkle {
+  0%, 100% { opacity: 1; }
+  40% { opacity: .45; }
+  70% { opacity: .8; }
+}
+
+@keyframes arcade-starfall {
+  from { transform: translateY(0); }
+  to { transform: translateY(100vh); }
+}
+
+@keyframes arcade-toast-in {
+  from { transform: translate(-50%, -50%) scale(.4); }
+  to { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes arcade-points {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0); }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -48px); }
+}
+
+@keyframes arcade-rainbow {
+  0% { --accent: #ffe600; }
+  25% { --accent: #00e5ff; }
+  50% { --accent: #ff2e88; }
+  75% { --accent: #39ff88; }
+}
+
+@keyframes arcade-rainbow-shadow {
+  0% { text-shadow: 4px 4px 0 #ff2e88; }
+  25% { text-shadow: 4px 4px 0 #00e5ff; }
+  50% { text-shadow: 4px 4px 0 #39ff88; }
+  75% { text-shadow: 4px 4px 0 #ffe600; }
+}
+
+
+/* Reduced motion
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media (prefers-reduced-motion: reduce) {
+  .button-entrance,
+  .fadein,
+  h1::after,
+  .button:hover::before,
+  .button:focus-visible::before,
+  .icon-hover:hover .hvr-icon,
+  .arcade-hud .hud-1up,
+  .arcade-turbo .button,
+  .arcade-turbo h1,
+  .parallax-background .object1,
+  .parallax-background .object2,
+  .parallax-background .object3,
+  .arcade-toast.is-visible,
+  .arcade-points {
+    animation: none; }
+  .arcade-points {
+    display: none; }
+}

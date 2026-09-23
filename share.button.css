@@ -1,0 +1,105 @@
+.share-icon {
+  padding: 0px 8px 3.5px 0px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.sharediv {
+  position: relative;
+  z-index: 2;
+  top: 24px;
+  right: 24px;
+  padding-bottom: 40px;
+}
+
+.toastdiv {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.toastbox {
+  width: 280px;
+  padding: 12px 10px 10px;
+  background-color: var(--arcade-panel);
+  color: var(--arcade-yellow);
+  border: 3px solid #000;
+  box-shadow: 5px 5px 0 #000;
+  border-radius: 0;
+  font-family: var(--arcade-text);
+  font-size: 22px;
+  position: fixed;
+  top: 105%;
+  -webkit-transition: transform 0.3s steps(3);
+  transition: transform 0.3s steps(3);
+  z-index: 2;
+  text-align: center;
+}
+.toastbox.toast-tox--active {
+  -webkit-transform: translateY(-150px);
+  transform: translateY(-150px);
+}
+
+/* Share button: a small yellow arcade button */
+.sharebutton,
+sharebutton {
+  display: inline-block;
+  box-sizing: border-box;
+  text-decoration: none;
+  height: 48px;
+  width: 48px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: var(--arcade-pixel);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 42px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 3px solid #000;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 #000;
+  cursor: pointer;
+  color: var(--arcade-bg);
+  background-color: var(--arcade-yellow);
+}
+@media screen and (min-width: 600px) {
+  .sharebutton,
+  sharebutton {
+    width: 150px;
+  }
+}
+sharebutton:hover,
+.sharebutton:hover,
+.sharebutton:focus-visible {
+  color: var(--arcade-bg);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+  outline: 0;
+}
+.sharebutton:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 #000;
+}
+.sharebutton.sharebutton-primary,
+.sharebutton.sharebutton-primary:hover,
+.sharebutton.sharebutton-primary:focus {
+  color: var(--arcade-bg);
+}
+
+@media screen and (max-width: 600px) {
+  .sharebutton-mb {
+    display: none;
+  }
+  .sharebutton-img {
+    position: relative;
+    left: 3px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
