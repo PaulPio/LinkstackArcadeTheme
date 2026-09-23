@@ -11,7 +11,7 @@ Find more themes: https://github.com/LinkStackOrg/linkstack-themes
 
 ![Arcade preview](preview.png)
 
-A dark retro arcade theme, styled like the arcade look of [paulpio.com](https://paulpio.com).
+A dark retro arcade theme for LinkStack: pixel fonts, neon buttons and CRT vibes.
 
 ### Features
 * Pixel fonts: Press Start 2P for the name and buttons, VT323 for text. Both are bundled, so no Google Fonts requests.

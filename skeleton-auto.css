@@ -1,7 +1,7 @@
 /* ************************************************************* */
 /*
 /* Arcade — a retro arcade theme for LinkStack
-/* Colors and fonts match paulpio.com
+/* Neon arcade palette with pixel fonts
 /*
 /* ************************************************************* */
 
@@ -333,7 +333,7 @@ hr {
 
 /* CRT overlay
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-/* Neon stripe along the top, like the progress bar on paulpio.com */
+/* Neon stripe along the top */
 body::before {
   content: "";
   position: fixed;

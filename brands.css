@@ -81,7 +81,7 @@ button {
 .social-icon-div ~ .button-entrance:nth-of-type(4n+4) .button { --accent: var(--arcade-pink); }
 .social-icon-div ~ .button-entrance:nth-of-type(4n+1) .button { --accent: var(--arcade-green); }
 
-/* Hover: fill with the accent and press down, like the buttons on paulpio.com */
+/* Hover: fill with the accent and press down like an arcade button */
 .button:hover,
 .button:focus-visible,
 button:hover {
